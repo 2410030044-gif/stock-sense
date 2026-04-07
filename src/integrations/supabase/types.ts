@@ -14,7 +14,45 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      stock_analyses: {
+        Row: {
+          confidence: number
+          created_at: string
+          id: string
+          input_text: string
+          negative_words: string[] | null
+          positive_words: string[] | null
+          sentiment_score: number
+          signal: string
+          stock_symbol: string
+          summary: string | null
+        }
+        Insert: {
+          confidence?: number
+          created_at?: string
+          id?: string
+          input_text: string
+          negative_words?: string[] | null
+          positive_words?: string[] | null
+          sentiment_score?: number
+          signal: string
+          stock_symbol: string
+          summary?: string | null
+        }
+        Update: {
+          confidence?: number
+          created_at?: string
+          id?: string
+          input_text?: string
+          negative_words?: string[] | null
+          positive_words?: string[] | null
+          sentiment_score?: number
+          signal?: string
+          stock_symbol?: string
+          summary?: string | null
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
