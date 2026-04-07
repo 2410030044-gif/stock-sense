@@ -1,26 +1,26 @@
-import { type AnalysisResult } from "@/lib/sentimentAnalyzer";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { SignalBadge } from "@/components/SignalBadge";
 import { BarChart3, ThumbsUp, ThumbsDown } from "lucide-react";
 
-export function AnalysisResults({ result }: { result: AnalysisResult }) {
+interface Props {
+  result: {
+    signal: string;
+    confidence: number;
+    positiveScore: number;
+    negativeScore: number;
+    positiveWords: string[];
+    negativeWords: string[];
+    summary: string;
+  };
+}
+
+export function AnalysisResults({ result }: Props) {
   const total = result.positiveScore + result.negativeScore;
   const positivePercent = total > 0 ? Math.round((result.positiveScore / total) * 100) : 50;
   const negativePercent = total > 0 ? Math.round((result.negativeScore / total) * 100) : 50;
 
   return (
-    <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
-      <div className="flex justify-center">
-        <SignalBadge signal={result.signal} confidence={result.confidence} />
-      </div>
-
-      <Card>
-        <CardContent className="pt-6">
-          <p className="text-muted-foreground leading-relaxed">{result.summary}</p>
-        </CardContent>
-      </Card>
-
+    <div className="space-y-4">
       <Card>
         <CardHeader className="pb-3">
           <CardTitle className="text-base flex items-center gap-2">
